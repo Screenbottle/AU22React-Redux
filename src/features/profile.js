@@ -12,7 +12,7 @@ const initalState = {
     name : ''
 }
 
-const reducer = createReducer(initalState, {
+/*const reducer = createReducer(initalState, {
     [changeAlias] : (state, action) => (
         {
             alias : action.payload,
@@ -25,6 +25,15 @@ const reducer = createReducer(initalState, {
     [resetProfile] : (state, action) => (
         initalState
     )
-})
+})*/
+
+const reducer = createReducer(initalState, builder => {
+    builder
+        .addCase(changeAlias, (state, action) => ({...state, alias : action.payload}))
+        .addCase(changeName, (state, action) => ({...state, name : action.payload}))
+        .addCase(resetProfile, (state, action) => initalState )
+});
+
+
 
 export { reducer, actions };
